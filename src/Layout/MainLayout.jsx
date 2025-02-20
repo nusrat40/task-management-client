@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className='bg-[#f7f5f4]'>
             <Navbar></Navbar>
             <div className="min-h-[calc(100vh-232px)]">
         <Outlet></Outlet>
