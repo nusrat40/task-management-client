@@ -4,9 +4,12 @@ import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import signup from '../assets/signup.png'
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
+    const axiosPublic =useAxiosPublic();
     const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -36,11 +39,34 @@ const Register = () => {
                 const user = result.user;
                 setUser(user);
                 updateUserProfile({ displayName: name, photoURL: photo })
-                    .then(() => navigate("/"))
-                    .catch((error) => toast.error(error.message));
-                toast.success("User created successfully");
+                .then(()=>{
+                
+                    //create user in the database
+                    const userInfo={
+                      name:name,
+                      email:email,
+                      photo:photo
+                    }
+                    axiosPublic.post('/users',userInfo)
+                    .then(res => {
+                      if (res.data.insertedId) {
+                        console.log('user added to the database')
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'User created successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+                    }
+      
+                    })
+      
             })
             .catch((error) => toast.error(error.message));
+        })
+    
     };
 
     return (
