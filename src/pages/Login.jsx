@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import login from "../assets/Login.png";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";
@@ -17,7 +19,7 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    signIn(email, password)
+    signInUser(email, password)
       .then((result) => {
         navigate(from);
       })
@@ -28,8 +30,17 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then((result) => {
-        navigate(from);
+    .then((result) => {
+        // console.log(result.user);
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+          photo: result.user?.photoURL,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          // console.log(res.data);
+          navigate("/dashboard");
+        });
       })
       .catch((error) => {
         toast.error(error.message);
