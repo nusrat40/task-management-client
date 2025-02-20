@@ -8,7 +8,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex mt-16 bg-[#f7f5f4]">
       {/* side bar */}
-      <div className="w-64 min-h-screen  border-r-4">
+      <div className="w-40 lg:w-64 min-h-screen  border-r-4">
         <ul className="menu p-4">
 
         <li>
