@@ -58,68 +58,69 @@ const AddTask = () => {
   };
 
   return (
-    <div className="max-w-screen-md mx-auto  p-6 bg-white shadow-lg rounded-xl grid grid-cols-1 lg:grid-cols-2">
+    <div className="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-xl grid grid-cols-1 lg:grid-cols-2 items-center">
+  {/* Left Side: Form */}
+  <div className="h-full flex flex-col justify-center">
+    <h2 className="text-2xl font-bold mb-4">Add New Task</h2>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Title */}
       <div>
-      <h2 className="text-2xl font-bold mb-4">Add New Task</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Title */}
-        <div>
-          <label className="block font-semibold">Title </label>
-          <input
-            type="text"
-            name="title"
-            value={task.title}
-            onChange={handleChange}
-            placeholder="Enter task title..."
-            maxLength="50"
-            className="w-full p-2 border rounded-md"
-            required
-          />
-          <p className="text-sm text-gray-500">{task.title.length}/50</p>
-        </div>
-
-        {/* Description */}
-        <div>
-          <label className="block font-semibold">Description</label>
-          <textarea
-            name="description"
-            value={task.description}
-            onChange={handleChange}
-            placeholder="Enter task description..."
-            maxLength="200"
-            className="w-full p-2 border rounded-md"
-          ></textarea>
-          <p className="text-sm text-gray-500">{task.description.length}/200</p>
-        </div>
-
-        {/* Category */}
-        <div>
-          <label className="block font-semibold">Category</label>
-          <select
-            name="category"
-            value={task.category}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
-          >
-            <option value="To-Do">To-Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-          </select>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-[#fae150] p-2 rounded-md "
-        >
-          Add Task
-        </button>
-      </form>
+        <label className="block font-semibold">Title </label>
+        <input
+          type="text"
+          name="title"
+          value={task.title}
+          onChange={handleChange}
+          placeholder="Enter task title..."
+          maxLength="50"
+          className="w-full p-2 border rounded-md"
+          required
+        />
+        <p className="text-sm text-gray-500">{task.title.length}/50</p>
       </div>
 
-      <img src={pic} alt="" />
+      {/* Description */}
+      <div>
+        <label className="block font-semibold">Description</label>
+        <textarea
+          name="description"
+          value={task.description}
+          onChange={handleChange}
+          placeholder="Enter task description..."
+          maxLength="200"
+          className="w-full p-2 border rounded-md"
+        ></textarea>
+        <p className="text-sm text-gray-500">{task.description.length}/200</p>
+      </div>
 
-    </div>
+      {/* Category */}
+      <div>
+        <label className="block font-semibold">Category</label>
+        <select
+          name="category"
+          value={task.category}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-md"
+        >
+          <option value="To-Do">To-Do</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
+
+      {/* Submit Button */}
+      <button type="submit" className="w-full bg-[#fae150] p-2 rounded-md">
+        Add Task
+      </button>
+    </form>
+  </div>
+
+  {/* Right Side: Image */}
+  <div className="h-full flex items-center justify-center">
+    <img src={pic} alt="Add Task" className="w-full h-auto max-h-[500px]" />
+  </div>
+</div>
+
   );
 };
 

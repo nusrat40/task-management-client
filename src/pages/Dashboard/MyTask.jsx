@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyTask = () => {
   const { user } = useContext(AuthContext); 
@@ -69,7 +70,7 @@ const MyTask = () => {
                   <td className="p-2">{new Date(task.timestamp).toLocaleString()}</td>
                   <td className=" p-2 space-x-2">
                     <button className="bg-[#fbea83] px-3 py-1 rounded-md">
-                      Edit
+                      <Link to={`/dashboard/updateTask/${task._id}`}>Edit</Link>
                     </button>
                     <button
                       className="bg-[#dfbf06] px-3 py-1 rounded-md"
