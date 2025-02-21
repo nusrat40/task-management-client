@@ -3,7 +3,7 @@ import banner from '../assets/banner.png'
 
 const Home = () => {
     return (
-        <div className=' min-h-screen flex flex-col lg:flex-row justify-center items-center px-20'>
+        <div className=' min-h-screen flex flex-col lg:flex-row justify-center items-center px-20 mt-16'>
             <img src={banner} alt="" />
             <div className='space-y-6 text-center lg:w-[600px]'>
                 <h1 className='text-6xl'>Think,plan and track all in one place</h1>
