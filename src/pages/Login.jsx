@@ -11,8 +11,8 @@ const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state || "/";
+
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const Login = () => {
 
     signInUser(email, password)
       .then((result) => {
-        navigate(from);
+        navigate("/dashboard/overview");
       })
       .catch((error) => {
         toast.error(error.message);
@@ -39,7 +39,7 @@ const Login = () => {
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           // console.log(res.data);
-          navigate("/dashboard");
+          navigate("/dashboard/overview");
         });
       })
       .catch((error) => {
