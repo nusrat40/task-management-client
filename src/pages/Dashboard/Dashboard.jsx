@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [date, setDate] = useState(new Date()); // State for selected date
 
   // Ensure hooks are called unconditionally
-  const API_URL = `http://localhost:5000/tasks?email=${user?.email || ""}`;
+  const API_URL = `https://task-management-server-green-psi.vercel.app/tasks?email=${user?.email || ""}`;
 
   useEffect(() => {
     if (!user) return; // Only fetch tasks if the user is logged in
@@ -60,7 +60,7 @@ const Dashboard = () => {
     setTasks(updatedTasks);
 
     try {
-      await axios.patch(`http://localhost:5000/tasks/${taskToMove._id}`, {
+      await axios.patch(`https://task-management-server-green-psi.vercel.app/tasks/${taskToMove._id}`, {
         category: destinationCategory,
         title: taskToMove.title,
         description: taskToMove.description,

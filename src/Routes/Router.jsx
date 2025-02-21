@@ -48,7 +48,7 @@ import UpdateTask from "../pages/Dashboard/UpdateTask";
            {
             path:'updateTask/:id',
             element:<UpdateTask></UpdateTask>,
-            loader:({params})=> fetch(`http://localhost:5000/tasks/${params.id}`)
+            loader:({params})=> fetch(`https://task-management-server-green-psi.vercel.app/tasks/${params.id}`)
 
            }
           ]
